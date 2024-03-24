@@ -53,7 +53,7 @@ DF2K
 python extract_subimages.py --input DF2K/train --output DF2K/train_sub --n_thread N
 python extract_subimages.py --input DF2K/train_x4 --output DF2K/train_sub_x4 --n_thread N --crop_size 120 --step 60
 ```
-* Now we have **train_sub** and **train_xub_x4** folders under **DF2K**, these two folders will be used for training.
+* Now we have **train_sub** and **train_sub_x4** folders under **DF2K**, these two folders will be used for training.
 
 ### Preparing Evaluation Data
 * Download Set5, Set14, Urban100, Manga109: Following this link: [download all](https://drive.google.com/drive/folders/1B3DJGQKB6eNdwuQIhdskA64qUuVKLZ9u)
