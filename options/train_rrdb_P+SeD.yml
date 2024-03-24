@@ -1,0 +1,91 @@
+# Overall settings
+name: train_RRDB_P+SeD
+model_type: RRDB
+stage: train
+manual_seed: 1
+
+# Model hyperparams
+model:
+  rrdb:
+    in_nc: 3
+    out_nc: 3
+  swinir:
+    img_size: 64
+    in_chans: 3
+    embed_dim: 180
+    depths: [6, 6, 6, 6, 6, 6]
+    num_heads: [6, 6, 6, 6, 6, 6]
+    window_size: 8
+    mlp_ratio: 2.
+    upscale: 4
+    img_range: 1.
+    upsampler: 'pixelshuffle'
+    resi_connection: '1conv'
+
+model_ex:
+  layers: [3, 4, 6, 3]
+  pretrained: True
+  path: ~
+  output_dim: 1024
+  heads: 32
+
+model_d:
+  input_nc: 3
+  ndf: 64
+  semantic_dim: 1024
+  semantic_size: 16
+  use_bias: True
+  nheads: 1
+  dhead: 64
+
+# Optimizers
+optimizer:
+  lr: !!float 1e-4
+  weight_decay: 0
+  betas: [0.9, 0.99]
+
+optimizer_d:
+  lr: !!float 1e-4
+  weight_decay: 0
+  betas: [0.9, 0.99]
+
+scheduler:
+  gamma: 0.5
+  milestones: [100000, 200000]
+
+scheduler_d:
+  gamma: 0.5
+  milestones: [100000, 200000]
+
+# Loss Weights
+loss_weights:
+  loss_pix: 1.0  # pixel loss
+  loss_p: 0.1  # perceptual loss
+  loss_g: 0.01  # gan loss
+# other loss parameters are hard-coded for now!
+
+# Datasets
+datasets:
+  train:
+    scale: 4
+    patch_size: 64
+  test: 
+    use_test: True
+
+dataloader:
+  train:
+    batch_size: 8
+    num_workers: 8
+    pin_memory: True
+  test:
+    batch_size: 1
+    num_workers: 1
+    pin_memory: True
+
+# Training
+train:
+  current_step: 0
+  total_step: 300000
+  log_every: 200
+  save_every: 5000
+  test_every: 5000

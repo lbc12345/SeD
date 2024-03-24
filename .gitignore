@@ -1,0 +1,4 @@
+SeD_backup
+*.pth
+__pycache__
+checkpoint

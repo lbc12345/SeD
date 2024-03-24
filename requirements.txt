@@ -1,0 +1,7 @@
+ftfy
+regex
+tqdm
+Pillow
+opencv-python
+timm==0.6.12
+einops
