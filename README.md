@@ -99,10 +99,10 @@ Visual Comparisons
 ## Citation
 Please cite us if this work is helpful to you.
 ```
-@article{li2024sed,
+@inproceedings{li2024sed,
   title={SeD: Semantic-Aware Discriminator for Image Super-Resolution},
   author={Li, Bingchen and Li, Xin and Zhu, Hanxin and Jin, Yeying and Feng, Ruoyu and Zhang, Zhizheng and Chen, Zhibo},
-  journal={arXiv preprint arXiv:2402.19387},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
   year={2024}
 }
 ```
