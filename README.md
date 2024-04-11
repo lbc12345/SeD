@@ -10,7 +10,7 @@ This repository is the official PyTorch implementation of SeD: Semantic-Aware Di
 
 ## :bookmark: News!!!
 - [x] 2024-3-24: **Updated training codes!**
-- [ ] 2024-4-9: **Updated test codes and pre-trained models.**
+- [x] 2024-4-11: **Updated test codes and U+SeD.**
 ---
 
 > Generative Adversarial Networks (GANs) have been widely used to recover vivid textures in image super-resolution (SR) tasks. In particular, one discriminator is utilized to enable the SR network to learn the distribution of real-world high-quality images in an adversarial training manner. However, the distribution learning is overly coarse-grained, which is susceptible to virtual textures and causes counter-intuitive generation results. To mitigate this, we propose the simple and effective Semantic-aware Discriminator (denoted as SeD), which encourages the SR network to learn the fine-grained distributions by introducing the semantics of images as a condition. Concretely, we aim to excavate the semantics of images from a well-trained semantic extractor. Under different semantics, the discriminator is able to distinguish the real-fake images individually and adaptively, which guides the SR network to learn the more fine-grained semantic-aware textures. To obtain accurate and abundant semantics, we take full advantage of recently popular pretrained vision models (PVMs) with extensive datasets, and then incorporate its semantic features into the discriminator through a well-designed spatial cross-attention module. In this way, our proposed semantic-aware discriminator empowered the SR network to produce more photo-realistic and pleasing images. Extensive experiments on two typical tasks, i.e., SR and Real SR have demonstrated the effectiveness of our proposed methods.
@@ -90,6 +90,17 @@ Notes: you may also alter the additional argparse:
 --data_root /path/to/your/DF2K
 --out_root /path/to/your/checkpoints
 ```
+Notes: you may also try "train_rrdb_U+SeD.yml"~
+
+## Testing
+To start up, please first modify the yml file. Modify "data_lr_root", "data_hr_root" and "use_hr". Then, modify "ckpt_path" into your checkpoint location.
+```bash
+CUDA_VISIBLE_DEVICES=0 python test.py --opt options/test_rrdb_P+SeD.yml --output_path /path/to/your/output
+```
+
+### Weights
+We provide our P+SeD weights in [Google drive](https://drive.google.com/drive/folders/18T9iUKgXh50z6dtCkpPnhIf51Ht0dtDZ?usp=drive_link)
+
 ## Results
 Quantitative Results
 <p align="center">

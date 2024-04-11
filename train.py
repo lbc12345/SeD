@@ -60,6 +60,7 @@ def main():
     # Initialization
     with open(args.opt, 'r') as f:
         opt = yaml.safe_load(f)
+    opt['name'] = opt['name'].replace('RRDB', opt['model_type'])
     print(opt)
 
     ckpt_path = os.path.join(args.out_root, opt['name'])
@@ -92,7 +93,10 @@ def main():
     
     model_ex = sed.CLIP_Semantic_extractor(**opt['model_ex']).to('cuda')
 
-    model_d = sed.SeD_P(**opt['model_d']).to('cuda')
+    if opt['name'].split('_')[-1] == 'P+SeD':
+        model_d = sed.SeD_P(**opt['model_d']).to('cuda')
+    elif opt['name'].split('_')[-1] == 'U+SeD':
+        model_d = sed.SeD_U(**opt['model_d']).to('cuda')
 
     if args.resume is not None:
         if torch.cuda.current_device() == 0:
