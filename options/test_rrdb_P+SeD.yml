@@ -1,0 +1,38 @@
+# Overall settings
+name: test_RRDB_P+SeD
+model_type: RRDB
+stage: test
+manual_seed: 1
+
+ckpt_path: 'checkpoint/RRDB+P+SeD.pt'
+
+# Model hyperparams
+model:
+  rrdb:
+    in_nc: 3
+    out_nc: 3
+  swinir:
+    img_size: 64
+    in_chans: 3
+    embed_dim: 180
+    depths: [6, 6, 6, 6, 6, 6]
+    num_heads: [6, 6, 6, 6, 6, 6]
+    window_size: 8
+    mlp_ratio: 2.
+    upscale: 4
+    img_range: 1.
+    upsampler: 'pixelshuffle'
+    resi_connection: '1conv'
+
+dataloader:
+  test:
+    batch_size: 1
+    num_workers: 1
+    pin_memory: True
+
+# Testing
+test:
+  data_lr_root: '/path/to/lr'
+  # comment following two lines if you do not have hr images.
+  use_hr: True
+  data_hr_root: '/path/to/hr'
